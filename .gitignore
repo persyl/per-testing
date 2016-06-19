@@ -1,0 +1,7 @@
+﻿*.suo
+*.user
+.vs
+packages
+PublishScripts
+node_modules
+dist
