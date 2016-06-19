@@ -1,14 +1,27 @@
 //import HelloWorld from './lib/hello-world';
 
+function init() {
+    const output = document.getElementById('example');
+    if (!output) {
+        return;
+    }
 
-window.setTimeout(() => {
-    console.log('Three seconds have passed and now we are doing a require.ensure() which loads separately!')
+    output.innerHTML = 'Please wait...';
 
-    require.ensure([], function() {
-        var HelloWorld = require('./lib/hello-world');
-        const hw = new HelloWorld();
-        hw.speak();
-    });
+    window.setTimeout(() => {
+        console.log('Three seconds have passed and now we are doing a require.ensure() which loads separately!')
 
+        require.ensure([], function() {
+            var HelloWorld = require('./lib/hello-world');
+            const hw = new HelloWorld();
+            output.innerHTML = hw.speak();
+        });
 
-}, 3000);
+    }, 3000);
+}
+
+require.ensure([], function() {
+    (function() {
+        init();
+    })();
+});
